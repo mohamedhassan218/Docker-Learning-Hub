@@ -6,10 +6,11 @@ In Docker, containers are designed to be ephemeral, meaning they are temporary a
 
 Docker volumes provide a way to store data outside the container’s file system, making it independent of the container’s lifecycle. This means that even if a container is deleted, the data stored in a volume remains intact and can be accessed by other containers. Volumes are the preferred method for persisting data generated or used by Docker containers because they are managed by Docker and provide several benefits:
 
-**Data Persistence**: Volumes ensure that important data is not lost when containers are stopped or removed.
-**Data Sharing**: Multiple containers can share and access the same data through volumes, facilitating collaboration between different services.
-**Isolation**: Volumes are stored in a special location on the host machine that is managed by Docker, providing an additional layer of isolation.
-**Performance**: Volumes are optimized for I/O operations and can offer better performance compared to other data storage methods like bind mounts.
+- **Data Persistence**: Volumes ensure that important data is not lost when containers are stopped or removed.
+- **Data Sharing**: Multiple containers can share and access the same data through volumes, facilitating collaboration between different services.
+- **Isolation**: Volumes are stored in a special location on the host machine that is managed by Docker, providing an additional layer of isolation.
+- **Performance**: Volumes are optimized for I/O operations and can offer better performance compared to other data storage methods like bind mounts.
+
 
 Using Docker volumes is straightforward. You can create a volume, attach it to one or more containers, and ensure that your data persists even when containers are stopped or removed. In the following example, we'll walk through a simple use case to demonstrate how to create a volume, use it with a container, and verify that the data persists.
 
