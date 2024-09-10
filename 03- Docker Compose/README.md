@@ -1,42 +1,59 @@
-# Weather API Service with Docker Compose
+# Docker Compose
 
-This project demonstrates how to build a simple Flask application that fetches weather data for a city using the OpenWeatherMap API and stores it in MongoDB. The application is containerized using Docker and orchestrated with Docker Compose.
+## Overview
 
-## Prerequisites
+This project demonstrates a simple **Task Queue System** using Docker Compose with **Flask** and **Redis**. The system is composed of two main components:
 
-- Docker
-- Docker Compose
-- OpenWeatherMap API Key
+- **Flask Application**: This acts as the task producer, allowing users to submit tasks that will be added to a queue.
+- **Worker Service**: This service acts as the task consumer, fetching tasks from the Redis queue and processing them.
 
-## Setup
+Redis serves as the **message broker**, managing the task queue between the producer (Flask app) and the consumer (worker service).
 
-1. Clone this repository.
-2. Navigate to the project directory.
-3. Create a `requirements.txt` file with the dependencies.
-4. Add your OpenWeatherMap API key in the `app.py` file.
+### Key Concepts
 
-## Running the Project
+- **Producer-Consumer Pattern**: In this system, the Flask app produces tasks by adding them to a Redis queue, while a separate worker process consumes and processes the tasks. This decoupling ensures scalability and efficient task handling.
+- **Redis as a Message Broker**: Redis is used here to store and manage the task queue. Tasks are pushed to the queue and later consumed and processed by a background worker.
+- **Docker Compose**: Docker Compose orchestrates the services involved—setting up the Flask app, Redis server, and the worker service—all in separate containers.
 
-1. Build and run the containers using Docker Compose:
-   ```bash
-   docker-compose up --build
-   ```
+---
 
-2. The application will be available at http://localhost:5000.
+## Architecture
 
-## Usage
-To get the weather data for a city, use the following endpoint:
+### Components:
+1. **Flask Application (Producer)**: 
+   - Listens for incoming task requests.
+   - Adds tasks to the Redis queue for processing.
 
-bash
-Copy code
-http://localhost:5000/weather?city=London
-Replace London with any city name.
+2. **Redis (Message Broker)**:
+   - Stores the tasks in a queue (list) and allows them to be fetched in a first-in, first-out (FIFO) manner.
 
-Stopping the Application
-To stop and remove the containers, run:
+3. **Worker (Consumer)**:
+   - Continuously listens to the Redis queue, picks up tasks, and processes them asynchronously.
 
-``` bash
-docker-compose down
+---
+
+## How It Works
+
+1 Build and Start Services
+
+To run the project, ensure that you have Docker and Docker Compose installed on your system. Then run the following command:
+
+```bash
+docker-compose up --build
 ```
 
-This project uses Python with Flask, MongoDB as a service, and Docker Compose for orchestration. It fetches weather data from the OpenWeatherMap API and stores it in MongoDB, making it a great example of integrating a Python web service with a NoSQL database.
+This will:
+- Build the Flask application image.
+- Start the Flask application, Redis, and worker service in their respective containers.
+
+### 3. Interacting with the System
+
+Once the services are running, you can interact with the task queue system using postman or any API testing tool.
+
+---
+
+## Conclusion
+
+This system provides a simple yet powerful demonstration of how to use **Docker Compose** to orchestrate multiple services (Flask, Redis, Worker) and implement a **producer-consumer** architecture using Redis as the message broker.
+
+With this setup, tasks can be submitted asynchronously and processed by a dedicated worker service, allowing for better scalability and responsiveness.
