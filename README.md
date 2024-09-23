@@ -23,3 +23,7 @@ The repository is organized into different folders, each representing a unique D
 
 If you have ideas for new examples or improvements, feel free to fork this repo and submit a pull request. Collaboration is welcome!
 
+
+## Acknowledgement
+
+This repository and its examples were made possible through the knowledge gained from completing an insightful [**tutorial**](https://youtu.be/kTp5xUtcalw?si=64EB4xIAK-RHUJjX). A special thanks to the author and to [**freeCodeCamp**](https://www.freecodecamp.org/) for providing such valuable and accessible educational resources. Their commitment to open-source learning has been instrumental in developing these lessons and ideas, and I’m grateful for their contribution to the tech community.
